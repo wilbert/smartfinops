@@ -1,0 +1,8 @@
+<%%= title t(:editing, model: t(:<%= singular_table_name %>, scope: "activerecord.models"))  %>
+
+<%% content_for :actions do -%>
+	<%%= link_to t(:details), @<%= singular_table_name %>, class: "btn btn-success" %>
+	<%%= link_to t(:back), <%= index_helper %>_path, class: "btn btn-success" %>
+<%% end -%>
+
+<%%= render 'form' %>

@@ -1,69 +1,73 @@
 class OwnersController < ApplicationController
-  before_action :set_owner, only: %i[ show edit update destroy ]
+  before_action :set_owner, only: [:show, :edit, :update, :destroy]
 
-  # GET /owners or /owners.json
+  respond_to :html, :json, :xml
+
   def index
-    @owners = Owner.all
+    @search = Owner.search(params[:q])
+    @owners = @search.result.paginate(page: params[:page])
+    respond_with @owners
   end
 
-  # GET /owners/1 or /owners/1.json
   def show
+    authorize @owner, :show?
+    respond_with @owner
   end
 
-  # GET /owners/new
   def new
     @owner = Owner.new
+    authorize @owner, :create?
+    respond_with @owner
   end
 
-  # GET /owners/1/edit
   def edit
+    authorize @owner, :update?
+    respond_with @owner
   end
 
-  # POST /owners or /owners.json
   def create
     @owner = Owner.new(owner_params)
-
-    respond_to do |format|
+    authorize @owner, :create?
+    respond_with @owner do |format|
       if @owner.save
-        format.html { redirect_to @owner, notice: "Owner was successfully created." }
-        format.json { render :show, status: :created, location: @owner }
+        format.html do
+          flash[:notice] = I18n.t(:created, model: I18n.t(:owner, scope: "activerecord.models"))
+          redirect_to @owner
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @owner.errors, status: :unprocessable_entity }
+        format.html { render action: 'new' }
       end
     end
   end
 
-  # PATCH/PUT /owners/1 or /owners/1.json
   def update
-    respond_to do |format|
+    authorize @owner, :update?
+    respond_with @owner do |format|
       if @owner.update(owner_params)
-        format.html { redirect_to @owner, notice: "Owner was successfully updated." }
-        format.json { render :show, status: :ok, location: @owner }
+        format.html do
+          flash[:notice] = I18n.t(:updated, model: I18n.t(:owner, scope: "activerecord.models"))
+          redirect_to @owner
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @owner.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit' }
       end
     end
   end
 
-  # DELETE /owners/1 or /owners/1.json
   def destroy
-    @owner.destroy
-    respond_to do |format|
-      format.html { redirect_to owners_url, notice: "Owner was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    authorize @owner, :destroy?
+    flash[:alert] = I18n.t(:removed, model: I18n.t(:owner, scope: "activerecord.models")) if @owner.destroy
+    respond_with @owner, location: owners_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_owner
-      @owner = Owner.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_owner
+    @owner = Owner.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def owner_params
-      params.require(:owner).permit(:name, :corportate_email)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def owner_params
+    params.require(:owner).permit(:name, :email)
+  end
 end

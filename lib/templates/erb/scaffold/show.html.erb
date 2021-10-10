@@ -1,0 +1,13 @@
+<%%= title t(:<%= singular_table_name %>, scope: 'activerecord.models').pluralize %>
+
+<%% content_for :actions do -%>
+	<%%= link_to t(:edit), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-success" %>
+	<%%= link_to t(:back), <%= index_helper %>_path, class: "btn btn-success" %>
+<%% end -%>
+
+<% attributes.each do |attribute| -%>
+<p>
+  <small><%%= t(:<%= attribute.name %>, scope: "activerecord.attributes.<%= singular_table_name %>") %>:</small>
+  <h3><%%= @<%= singular_table_name %>.<%= attribute.name %> %></h3>
+</p>
+<% end -%>

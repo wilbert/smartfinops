@@ -1,6 +1,8 @@
-<h1>Editing Owner</h1>
+<%= title t(:editing, model: t(:owner, scope: "activerecord.models"))  %>
 
-<%= render 'form', owner: @owner %>
+<% content_for :actions do -%>
+	<%= link_to t(:details), @owner, class: "btn btn-success" %>
+	<%= link_to t(:back), owners_path, class: "btn btn-success" %>
+<% end -%>
 
-<%= link_to 'Show', @owner %> |
-<%= link_to 'Back', owners_path %>
+<%= render 'form' %>

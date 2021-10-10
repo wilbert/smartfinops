@@ -1,24 +1,41 @@
-<p id="notice"><%= notice %></p>
+<h2><%= title t(:owner, scope: 'activerecord.models').pluralize %></h2>
 
-<h1>Owners</h1>
+<% content_for :actions do -%>
+  <%= link_to t(:add_model, model: t(:owner, scope: 'activerecord.models')), new_owner_path, class: "btn btn-success" %>
+<% end -%>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Corportate email</th>
+      <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
+      <th><%= sort_link @search, :name, t(:name, scope: "activerecord.attributes.owner") %></th>
+      <th><%= sort_link @search, :email, t(:email, scope: "activerecord.attributes.owner") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @owners.each do |owner| %>
       <tr>
+        <td><%= owner.id %></td>
         <td><%= owner.name %></td>
-        <td><%= owner.corportate_email %></td>
-        <td><%= link_to 'Show', owner %></td>
-        <td><%= link_to 'Edit', edit_owner_path(owner) %></td>
-        <td><%= link_to 'Destroy', owner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= owner.email %></td>
+        <td>
+          <%= link_to owner, title: t(:visualize) do %>
+            <i class="fa fa-eye btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to edit_owner_path(owner), title: t(:edit) do %>
+            <i class="fa fa-edit btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to owner, method: :delete, data: { confirm: t(:are_you_sure) }, title: t(:delete) do %>
+            <i class="fa fa-trash-o btn btn-danger"></i>
+          <% end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +43,4 @@
 
 <br>
 
-<%= link_to 'New Owner', new_owner_path %>
+<%= will_paginate @owners %>

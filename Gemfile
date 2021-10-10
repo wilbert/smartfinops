@@ -12,6 +12,11 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'simple_form', '5.1.0'
+gem "pundit", '2.1.1'
+gem 'responders', '3.0.1'
+gem 'ransack'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'pry-rails', '0.3.9'
@@ -31,6 +36,7 @@ end
 group :test do
   gem 'rails-controller-testing'
   gem 'rspec'
+  gem "factory_bot_rails"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

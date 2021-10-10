@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
+<%= title t(:owner, scope: 'activerecord.models').pluralize %>
+
+<% content_for :actions do -%>
+	<%= link_to t(:edit), edit_owner_path(@owner), class: "btn btn-success" %>
+	<%= link_to t(:back), owners_path, class: "btn btn-success" %>
+<% end -%>
 
 <p>
-  <strong>Name:</strong>
-  <%= @owner.name %>
+  <small><%= t(:name, scope: "activerecord.attributes.owner") %>:</small>
+  <h3><%= @owner.name %></h3>
 </p>
-
 <p>
-  <strong>Corportate email:</strong>
-  <%= @owner.corportate_email %>
+  <small><%= t(:email, scope: "activerecord.attributes.owner") %>:</small>
+  <h3><%= @owner.email %></h3>
 </p>
-
-<%= link_to 'Edit', edit_owner_path(@owner) %> |
-<%= link_to 'Back', owners_path %>

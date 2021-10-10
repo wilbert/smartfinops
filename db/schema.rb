@@ -10,31 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_024539) do
+ActiveRecord::Schema.define(version: 2021_10_10_035846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "owners", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "business_email", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "products", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_active"
-    t.integer "critical_level"
-    t.datetime "end_of_life"
-    t.string "business_alias"
-    t.string "code_repository_url"
-    t.integer "status"
-    t.bigint "owner_id", null: false
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id"], name: "index_products_on_owner_id"
   end
 
-  add_foreign_key "products", "owners"
 end
