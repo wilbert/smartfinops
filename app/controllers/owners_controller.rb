@@ -4,6 +4,7 @@ class OwnersController < ApplicationController
   respond_to :html, :json, :xml
 
   def index
+    authorize Owner, :index?
     @search = Owner.search(params[:q])
     @owners = @search.result.paginate(page: params[:page])
     respond_with @owners

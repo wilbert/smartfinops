@@ -7,28 +7,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <title>Jets App</title>
+  <title>SmartFinOps</title>
   <%= javascript_pack_tag "application", 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_pack_tag "theme", media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-<!-- inside app/views/welcome/index.html.erb -->
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4">
-    <h5 class="text-white h4">Collapsed content</h5>
-    <span class="text-muted">Toggleable via the navbar brand.</span>
-  </div>
-</div>
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
 
+<header>
+  <div class="px-3 py-2 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <span class="fs-4">SmartFinOps</span>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+        </ul>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2"><%= t(:logout) %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="px-3 py-2 border-bottom mb-3">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+
+      <div class="text-end">
+        <%= yield :actions %>
+      </div>
+    </div>
+  </div>
+</header>
 <main>
-  <section class="py-5 container-fluid">
+  <section class="py-5 container">
     <%= yield %>
   </section>
 </main>

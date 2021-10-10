@@ -12,7 +12,8 @@
     "bootstrap": "^5.1.1",
     "@popperjs/core": "^2.10.1",
     "aws-amplify": "^4.3.0",
-    "stimulus": "^3.0.0"
+    "stimulus": "^3.0.0",
+    "@fortawesome/fontawesome-free": "^5.15.4"
   },
   "version": "0.1.0",
   "devDependencies": {
