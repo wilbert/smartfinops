@@ -1,0 +1,23 @@
+<h2><%= t(:sign_in, scope: 'devise.links') %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+    <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+  </div>
+  <% if devise_mapping.rememberable? %>
+    <%= f.input :remember_me, as: :boolean,
+                label: t(:remember_me, scope: 'activerecord.attributes.user'),
+                label_html: { class: 'pt-1 ml-2' } %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, t(:sign_in, scope: 'devise.links'), class: 'btn btn-primary btn-block' %>
+  </div>
+<% end %>
+

@@ -17,6 +17,7 @@ gem "pundit", '2.1.1'
 gem 'responders', '3.0.1'
 gem 'ransack'
 gem 'will_paginate'
+gem 'devise'
 
 group :development, :test do
   gem 'pry-rails', '0.3.9'
