@@ -1,0 +1,17 @@
+pt-BR:
+  you_are_not_authorized_to_perform_this_action: "Você não é autorizado para realizar essa ação"
+
+  activerecord:
+    models:
+      product: "Produto"
+    attributes:
+      id: "Id"
+      product:
+        name: "Nome"
+
+  will_paginate:
+    page_gap: "..."
+    previous_label: "Página anterior"
+    next_label: "Proxima Página"
+    page_entries_info:
+      multi_page_html: ""
