@@ -1,0 +1,31 @@
+<%= title t(:cloud_stack, scope: 'activerecord.models').pluralize %>
+
+<% content_for :actions do -%>
+	<%= link_to t(:edit), edit_cloud_stack_path(@cloud_stack), class: "btn btn-success" %>
+	<%= link_to t(:back), cloud_stacks_path, class: "btn btn-success" %>
+<% end -%>
+
+<p>
+  <small><%= t(:cloud_provider, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.cloud_provider %></h3>
+</p>
+<p>
+  <small><%= t(:cloud_provider_id, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.cloud_provider_id %></h3>
+</p>
+<p>
+  <small><%= t(:sla, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.sla %></h3>
+</p>
+<p>
+  <small><%= t(:score, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.score %></h3>
+</p>
+<p>
+  <small><%= t(:status, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.status %></h3>
+</p>
+<p>
+  <small><%= t(:product, scope: "activerecord.attributes.cloud_stack") %>:</small>
+  <h3><%= @cloud_stack.product %></h3>
+</p>

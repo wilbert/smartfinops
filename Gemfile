@@ -18,6 +18,7 @@ gem 'responders', '3.0.1'
 gem 'ransack'
 gem 'will_paginate'
 gem 'devise'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'pry-rails', '0.3.9'

@@ -1,0 +1,86 @@
+<%= title t(:app, scope: 'activerecord.models').pluralize %>
+
+<% content_for :actions do -%>
+	<%= link_to t(:edit), edit_app_path(@app), class: "btn btn-success" %>
+	<%= link_to t(:back), apps_path, class: "btn btn-success" %>
+  <%= link_to t(:add_model, model: t(:'activerecord.models.cloud_stack')), new_app_cloud_stack_path(@app), class: 'btn btn-primary' %>
+<% end -%>
+
+<div class="row">
+  <div class="col">
+    <p>
+      <small><%= t(:name, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.name %></h3>
+    </p>
+    <p>
+      <small><%= t(:is_active, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.is_active %></h3>
+    </p>
+    <p>
+      <small><%= t(:critical_level, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.critical_level %></h3>
+    </p>
+    <p>
+      <small><%= t(:is_internal, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.is_internal %></h3>
+    </p>
+    <p>
+      <small><%= t(:business_alias, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.business_alias %></h3>
+    </p>
+    <p>
+      <small><%= t(:repository_url, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.repository_url %></h3>
+    </p>
+    <p>
+      <small><%= t(:app_tags, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.app_tags %></h3>
+    </p>
+    <p>
+      <small><%= t(:owner, scope: "activerecord.attributes.app") %>:</small>
+    <h3><%= @app.owner %></h3>
+    </p>
+  </div>
+  <div class="col">
+    <h3><%= t(:cloud_stacks) %></h3>
+
+    <table class="table table-hover table-striped">
+      <tbody>
+        <% @app.cloud_stacks.each do |cloud_stack| %>
+        <tr>
+          <td>#ID</td>
+          <td><%= cloud_stack.id %></td>
+        </tr>
+        <tr>
+          <td><%= t(:'activerecord.attributes.cloud_stack.cloud_provider') %></td>
+          <td><%= CloudStack.providers.key(cloud_stack.cloud_provider) %></td>
+        </tr>
+        <tr>
+          <td><%= t(:'activerecord.attributes.cloud_stack.cloud_provider_id') %></td>
+          <td><%= cloud_stack.cloud_provider_id %></td>
+        </tr>
+        <tr>
+          <td><%= t(:'activerecord.attributes.cloud_stack.sla') %></td>
+          <td><%= cloud_stack.sla %></td>
+        </tr>
+        <tr>
+          <td><%=t(:'activerecord.attributes.cloud_stack.score') %></td>
+          <td><%= cloud_stack.score %></td>
+        </tr>
+        <tr>
+          <td><%=t(:'activerecord.attributes.cloud_stack.status') %></td>
+          <td><%= cloud_stack.status %></td>
+        </tr>
+        <tr>
+          <td><%=t(:'activerecord.attributes.cloud_stack.status') %></td>
+          <td><%= cloud_stack.last_month_cost %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
+

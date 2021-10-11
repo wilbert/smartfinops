@@ -1,0 +1,58 @@
+<h2><%= title t(:app, scope: 'activerecord.models').pluralize %></h2>
+
+<% content_for :actions do -%>
+  <%= link_to t(:add_model, model: t(:app, scope: 'activerecord.models')), new_app_path, class: "btn btn-success" %>
+<% end -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
+      <th><%= sort_link @search, :name, t(:name, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :is_active, t(:is_active, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :critical_level, t(:critical_level, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :is_internal, t(:is_internal, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :business_alias, t(:business_alias, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :repository_url, t(:repository_url, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :app_tags, t(:app_tags, scope: "activerecord.attributes.app") %></th>
+      <th><%= sort_link @search, :owner, t(:owner, scope: "activerecord.attributes.app") %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @apps.each do |app| %>
+      <tr>
+        <td><%= app.id %></td>
+        <td><%= app.name %></td>
+        <td><%= app.is_active %></td>
+        <td><%= app.critical_level %></td>
+        <td><%= app.is_internal %></td>
+        <td><%= app.business_alias %></td>
+        <td><%= app.repository_url %></td>
+        <td><%= app.app_tags %></td>
+        <td><%= app.owner %></td>
+        <td>
+          <%= link_to app, title: t(:visualize) do %>
+            <i class="fa fa-eye btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to edit_app_path(app), title: t(:edit) do %>
+            <i class="fa fa-edit btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to app, method: :delete, data: { confirm: t(:are_you_sure) }, title: t(:delete) do %>
+            <i class="fa fa-trash-o btn btn-danger"></i>
+          <% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @apps %>

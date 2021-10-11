@@ -1,0 +1,3 @@
+class AppPolicy < ApplicationPolicy
+
+end

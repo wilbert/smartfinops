@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_161342) do
+ActiveRecord::Schema.define(version: 2021_10_10_181450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_active"
+    t.integer "critical_level"
+    t.boolean "is_internal"
+    t.string "business_alias"
+    t.string "repository_url"
+    t.string "app_tags"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["app_tags"], name: "index_apps_on_app_tags"
+    t.index ["owner_id"], name: "index_apps_on_owner_id"
+  end
+
+  create_table "cloud_stacks", force: :cascade do |t|
+    t.integer "cloud_provider"
+    t.string "cloud_provider_id"
+    t.float "sla"
+    t.float "score"
+    t.integer "status"
+    t.bigint "app_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["app_id"], name: "index_cloud_stacks_on_app_id"
+  end
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
@@ -47,4 +74,6 @@ ActiveRecord::Schema.define(version: 2021_10_10_161342) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "apps", "owners"
+  add_foreign_key "cloud_stacks", "apps"
 end

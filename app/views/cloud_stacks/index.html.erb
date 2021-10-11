@@ -1,0 +1,54 @@
+<h2><%= title t(:cloud_stack, scope: 'activerecord.models').pluralize %></h2>
+
+<% content_for :actions do -%>
+  <%= link_to t(:add_model, model: t(:cloud_stack, scope: 'activerecord.models')), new_cloud_stack_path, class: "btn btn-success" %>
+<% end -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
+      <th><%= sort_link @search, :cloud_provider, t(:cloud_provider, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th><%= sort_link @search, :cloud_provider_id, t(:cloud_provider_id, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th><%= sort_link @search, :sla, t(:sla, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th><%= sort_link @search, :score, t(:score, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th><%= sort_link @search, :status, t(:status, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th><%= sort_link @search, :product, t(:product, scope: "activerecord.attributes.cloud_stack") %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @cloud_stacks.each do |cloud_stack| %>
+      <tr>
+        <td><%= cloud_stack.id %></td>
+        <td><%= cloud_stack.cloud_provider %></td>
+        <td><%= cloud_stack.cloud_provider_id %></td>
+        <td><%= cloud_stack.sla %></td>
+        <td><%= cloud_stack.score %></td>
+        <td><%= cloud_stack.status %></td>
+        <td><%= cloud_stack.product %></td>
+        <td>
+          <%= link_to cloud_stack, title: t(:visualize) do %>
+            <i class="fa fa-eye btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to edit_cloud_stack_path(cloud_stack), title: t(:edit) do %>
+            <i class="fa fa-edit btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to cloud_stack, method: :delete, data: { confirm: t(:are_you_sure) }, title: t(:delete) do %>
+            <i class="fa fa-trash-o btn btn-danger"></i>
+          <% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @cloud_stacks %>

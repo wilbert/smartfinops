@@ -83,12 +83,17 @@ pt-BR:
 
   activerecord:
     models:
-      product: "Produto"
-      owner: 'Responsável'
+      app: "Produto"
+      cloud_stack: "Stack"
+      cloud_resource: "Recurso"
+      owner: 'Owner'
     attributes:
       id: "Id"
-      product:
+      app:
         name: "Nome"
+      cloud_stack:
+        cloud_provider: "Cloud Provider"
+        cloud_provider_id: "ID Único (ARN)"
 
   will_paginate:
     page_gap: "..."

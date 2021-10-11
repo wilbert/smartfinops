@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  resources :apps do
+    resources :cloud_stacks, shallow: true
+  end
+
   devise_for :users
   resources :owners
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root to: 'homes#index'
 end

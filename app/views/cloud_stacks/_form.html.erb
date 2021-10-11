@@ -1,0 +1,13 @@
+<%= simple_form_for([app, @cloud_stack]) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :cloud_provider, collection: CloudStack.providers.keys %>
+    <%= f.input :cloud_provider_id %>
+    <%= f.input :sla %>
+    <%= f.input :score %>
+    <%= f.input :status, collection: CloudStack.statuses.keys %>
+  <hr class="my-4">
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
