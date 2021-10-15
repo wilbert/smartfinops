@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_181450) do
+ActiveRecord::Schema.define(version: 2021_10_13_145418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2021_10_10_181450) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["app_id"], name: "index_cloud_stacks_on_app_id"
+  end
+
+  create_table "compliences", force: :cascade do |t|
+    t.string "rule_name"
+    t.float "weight"
+    t.datetime "deadline"
+    t.boolean "required_by_law"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "owners", force: :cascade do |t|

@@ -1,0 +1,2 @@
+class Complience < ApplicationRecord
+end

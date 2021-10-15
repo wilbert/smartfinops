@@ -1,0 +1,12 @@
+<%= simple_form_for(@complience) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :rule_name %>
+    <%= f.input :weight %>
+    <%= f.input :deadline %>
+    <%= f.input :required_by_law %>
+  <hr class="my-4">
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
