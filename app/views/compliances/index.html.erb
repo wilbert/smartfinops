@@ -1,0 +1,50 @@
+<h2><%= title t(:compliance, scope: 'activerecord.models').pluralize %></h2>
+
+<% content_for :actions do -%>
+  <%= link_to t(:add_model, model: t(:compliance, scope: 'activerecord.models')), new_compliance_path, class: "btn btn-success" %>
+<% end -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
+      <th><%= sort_link @search, :rule_name, t(:rule_name, scope: "activerecord.attributes.compliance") %></th>
+      <th><%= sort_link @search, :weight, t(:weight, scope: "activerecord.attributes.compliance") %></th>
+      <th><%= sort_link @search, :deadline, t(:deadline, scope: "activerecord.attributes.compliance") %></th>
+      <th><%= sort_link @search, :required_by_law, t(:required_by_law, scope: "activerecord.attributes.compliance") %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @compliances.each do |compliance| %>
+      <tr>
+        <td><%= compliance.id %></td>
+        <td><%= compliance.rule_name %></td>
+        <td><%= compliance.weight %></td>
+        <td><%= compliance.deadline %></td>
+        <td><%= compliance.required_by_law %></td>
+        <td>
+          <%= link_to compliance, title: t(:visualize) do %>
+            <i class="fa fa-eye btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to edit_compliance_path(compliance), title: t(:edit) do %>
+            <i class="fa fa-edit btn btn-default"></i>
+          <% end -%>
+        </td>
+        <td>
+          <%= link_to compliance, method: :delete, data: { confirm: t(:are_you_sure) }, title: t(:delete) do %>
+            <i class="fa fa-trash-o btn btn-danger"></i>
+          <% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @compliances %>

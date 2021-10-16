@@ -1,6 +1,6 @@
-class CreateCompliences < ActiveRecord::Migration[6.1]
+class CreateCompliances < ActiveRecord::Migration[6.1]
   def change
-    create_table :compliences do |t|
+    create_table :compliances do |t|
       t.string :rule_name
       t.float :weight
       t.datetime :deadline

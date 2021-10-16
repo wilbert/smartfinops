@@ -12,8 +12,8 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/compliences", type: :request do
-  # Complience. As you add validations to Complience, be sure to
+RSpec.describe "/compliances", type: :request do
+  # Compliance. As you add validations to Compliance, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -25,58 +25,58 @@ RSpec.describe "/compliences", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Complience.create! valid_attributes
-      get compliences_url
+      Compliance.create! valid_attributes
+      get compliances_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      complience = Complience.create! valid_attributes
-      get complience_url(complience)
+      compliance = Compliance.create! valid_attributes
+      get compliance_url(compliance)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_complience_url
+      get new_compliance_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      complience = Complience.create! valid_attributes
-      get edit_complience_url(complience)
+      compliance = Compliance.create! valid_attributes
+      get edit_compliance_url(compliance)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Complience" do
+      it "creates a new Compliance" do
         expect {
-          post compliences_url, params: { complience: valid_attributes }
-        }.to change(Complience, :count).by(1)
+          post compliances_url, params: { compliance: valid_attributes }
+        }.to change(Compliance, :count).by(1)
       end
 
-      it "redirects to the created complience" do
-        post compliences_url, params: { complience: valid_attributes }
-        expect(response).to redirect_to(complience_url(Complience.last))
+      it "redirects to the created compliance" do
+        post compliances_url, params: { compliance: valid_attributes }
+        expect(response).to redirect_to(compliance_url(Compliance.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Complience" do
+      it "does not create a new Compliance" do
         expect {
-          post compliences_url, params: { complience: invalid_attributes }
-        }.to change(Complience, :count).by(0)
+          post compliances_url, params: { compliance: invalid_attributes }
+        }.to change(Compliance, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post compliences_url, params: { complience: invalid_attributes }
+        post compliances_url, params: { compliance: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -88,42 +88,42 @@ RSpec.describe "/compliences", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested complience" do
-        complience = Complience.create! valid_attributes
-        patch complience_url(complience), params: { complience: new_attributes }
-        complience.reload
+      it "updates the requested compliance" do
+        compliance = Compliance.create! valid_attributes
+        patch compliance_url(compliance), params: { compliance: new_attributes }
+        compliance.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the complience" do
-        complience = Complience.create! valid_attributes
-        patch complience_url(complience), params: { complience: new_attributes }
-        complience.reload
-        expect(response).to redirect_to(complience_url(complience))
+      it "redirects to the compliance" do
+        compliance = Compliance.create! valid_attributes
+        patch compliance_url(compliance), params: { compliance: new_attributes }
+        compliance.reload
+        expect(response).to redirect_to(compliance_url(compliance))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        complience = Complience.create! valid_attributes
-        patch complience_url(complience), params: { complience: invalid_attributes }
+        compliance = Compliance.create! valid_attributes
+        patch compliance_url(compliance), params: { compliance: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested complience" do
-      complience = Complience.create! valid_attributes
+    it "destroys the requested compliance" do
+      compliance = Compliance.create! valid_attributes
       expect {
-        delete complience_url(complience)
-      }.to change(Complience, :count).by(-1)
+        delete compliance_url(compliance)
+      }.to change(Compliance, :count).by(-1)
     end
 
-    it "redirects to the compliences list" do
-      complience = Complience.create! valid_attributes
-      delete complience_url(complience)
-      expect(response).to redirect_to(compliences_url)
+    it "redirects to the compliances list" do
+      compliance = Compliance.create! valid_attributes
+      delete compliance_url(compliance)
+      expect(response).to redirect_to(compliances_url)
     end
   end
 end

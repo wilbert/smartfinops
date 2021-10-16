@@ -1,11 +1,20 @@
-<%= simple_form_for([app, @cloud_stack]) do |f| %>
+<%= simple_form_for([@app, @cloud_stack]) do |f| %>
   <%= f.error_notification %>
 
-    <%= f.input :cloud_provider, collection: CloudStack.providers.keys %>
+    <%= f.input :name %>
+    <%= f.input :cloud_provider, collection: CloudStack.providers.keys, selected: @cloud_stack.cloud_provider %>
     <%= f.input :cloud_provider_id %>
     <%= f.input :sla %>
     <%= f.input :score %>
     <%= f.input :status, collection: CloudStack.statuses.keys %>
+    <%= simple_fields_for :compliances do |st| %>
+      <% Compliance.order('rule_name').each_with_index do |c, index| %>
+        <div class="form-check">
+          <%= check_box_tag 'cloud_stack[compliance_ids][]', c.id, @cloud_stack.compliances.map(&:id).include?(c.id), id: "cloud_stack_compliance_id_#{index}", class: 'form-check-input' %>
+          <label for="<%= "cloud_stack_compliance_id_#{index}" %>" class="form-check-label"><%= c.rule_name %></label>
+        </div>
+      <% end %>
+    <% end %>
   <hr class="my-4">
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>

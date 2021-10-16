@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :compliences
+  resources :cloud_resources
+  resources :compliances
   resources :apps do
     resources :cloud_stacks, shallow: true
   end

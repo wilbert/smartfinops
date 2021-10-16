@@ -1,0 +1,3 @@
+class CompliancePolicy < ApplicationPolicy
+
+end

@@ -1,0 +1,2 @@
+class Compliance < ApplicationRecord
+end

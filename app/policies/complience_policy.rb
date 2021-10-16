@@ -1,3 +1,0 @@
-class CompliencePolicy < ApplicationPolicy
-
-end

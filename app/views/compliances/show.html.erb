@@ -1,0 +1,23 @@
+<%= title t(:compliance, scope: 'activerecord.models').pluralize %>
+
+<% content_for :actions do -%>
+	<%= link_to t(:edit), edit_compliance_path(@compliance), class: "btn btn-success" %>
+	<%= link_to t(:back), compliances_path, class: "btn btn-success" %>
+<% end -%>
+
+<p>
+  <small><%= t(:rule_name, scope: "activerecord.attributes.compliance") %>:</small>
+  <h3><%= @compliance.rule_name %></h3>
+</p>
+<p>
+  <small><%= t(:weight, scope: "activerecord.attributes.compliance") %>:</small>
+  <h3><%= @compliance.weight %></h3>
+</p>
+<p>
+  <small><%= t(:deadline, scope: "activerecord.attributes.compliance") %>:</small>
+  <h3><%= @compliance.deadline %></h3>
+</p>
+<p>
+  <small><%= t(:required_by_law, scope: "activerecord.attributes.compliance") %>:</small>
+  <h3><%= @compliance.required_by_law %></h3>
+</p>

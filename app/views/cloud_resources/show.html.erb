@@ -1,0 +1,39 @@
+<%= title t(:cloud_resource, scope: 'activerecord.models').pluralize %>
+
+<% content_for :actions do -%>
+	<%= link_to t(:edit), edit_cloud_resource_path(@cloud_resource), class: "btn btn-success" %>
+	<%= link_to t(:back), cloud_resources_path, class: "btn btn-success" %>
+<% end -%>
+
+<p>
+  <small><%= t(:identifier, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.identifier %></h3>
+</p>
+<p>
+  <small><%= t(:service, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.service %></h3>
+</p>
+<p>
+  <small><%= t(:name, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.name %></h3>
+</p>
+<p>
+  <small><%= t(:service_type, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.service_type %></h3>
+</p>
+<p>
+  <small><%= t(:region, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.region %></h3>
+</p>
+<p>
+  <small><%= t(:correct_app_tag, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.correct_app_tag %></h3>
+</p>
+<p>
+  <small><%= t(:app_env, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.app_env %></h3>
+</p>
+<p>
+  <small><%= t(:cloud_stack, scope: "activerecord.attributes.cloud_resource") %>:</small>
+  <h3><%= @cloud_resource.cloud_stack %></h3>
+</p>

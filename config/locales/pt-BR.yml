@@ -86,7 +86,8 @@ pt-BR:
       app: "Produto"
       cloud_stack: "Stack"
       cloud_resource: "Recurso"
-      owner: 'Owner'
+      owner: 'TechLead'
+      compliance: 'Compliance'
     attributes:
       id: "Id"
       app:

@@ -1,6 +1,12 @@
-
-Aws.config.update(
-  {
-    credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']),
-    region: 'us-east-1'
-  })
+# role_credentials = Aws::AssumeRoleCredentials.new(
+#   client: Aws::STS::Client.new,
+#   role_arn: "linked::account::arn",
+#   role_session_name: "session-name"
+# )
+#
+#
+# Aws.config.update(
+#   {
+#     credentials: role_credentials,
+#     region: 'us-east-1'
+#   })

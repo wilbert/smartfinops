@@ -1,0 +1,3 @@
+class CloudResourcePolicy < ApplicationPolicy
+
+end

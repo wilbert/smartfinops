@@ -1,6 +1,6 @@
 class CloudStacksController < ApplicationController
-  before_action :set_cloud_stack, only: [:show, :edit, :update, :destroy]
   before_action :set_app, only: [:new, :create, :destroy]
+  before_action :set_cloud_stack, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json, :xml
 
@@ -41,7 +41,7 @@ class CloudStacksController < ApplicationController
       if @cloud_stack.update(cloud_stack_params)
         format.html do
           flash[:notice] = I18n.t(:updated, model: I18n.t(:cloud_stack, scope: "activerecord.models"))
-          redirect_to @app
+          redirect_to @cloud_stack.app
         end
       else
         format.html { render action: 'edit' }
@@ -58,7 +58,7 @@ class CloudStacksController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_cloud_stack
-    @cloud_stack = @app.cloud_stacks.find(params[:id])
+    @cloud_stack = CloudStack.find(params[:id])
   end
 
   def set_app
@@ -67,6 +67,15 @@ class CloudStacksController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def cloud_stack_params
-    params.require(:cloud_stack).permit(:cloud_provider, :cloud_provider_id, :sla, :score, :status, :product_id)
+    params.require(:cloud_stack).permit(
+      :name,
+      :cloud_provider,
+      :cloud_provider_id,
+      :sla,
+      :score,
+      :status,
+      :product_id,
+      compliance_ids: []
+    )
   end
 end

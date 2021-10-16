@@ -1,2 +1,0 @@
-class Complience < ApplicationRecord
-end

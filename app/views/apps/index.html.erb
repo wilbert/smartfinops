@@ -13,7 +13,6 @@
       <th><%= sort_link @search, :critical_level, t(:critical_level, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :is_internal, t(:is_internal, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :business_alias, t(:business_alias, scope: "activerecord.attributes.app") %></th>
-      <th><%= sort_link @search, :repository_url, t(:repository_url, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :app_tags, t(:app_tags, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :owner, t(:owner, scope: "activerecord.attributes.app") %></th>
       <th colspan="3"></th>
@@ -30,9 +29,8 @@
         <td><%= app.critical_level %></td>
         <td><%= app.is_internal %></td>
         <td><%= app.business_alias %></td>
-        <td><%= app.repository_url %></td>
         <td><%= app.app_tags %></td>
-        <td><%= app.owner %></td>
+        <td><%= app.owner.try(:name) %></td>
         <td>
           <%= link_to app, title: t(:visualize) do %>
             <i class="fa fa-eye btn btn-default"></i>

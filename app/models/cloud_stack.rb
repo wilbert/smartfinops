@@ -6,6 +6,11 @@ class CloudStack < ApplicationRecord
   enum providers: { amazon: 0, google: 1 }
   enum status: { critical_alerts: 0, low_alerts: 1, healthy: 2 }
 
+  has_many :cloud_stack_compliances
+  has_many :compliances, through: :cloud_stack_compliances
+
+  accepts_nested_attributes_for :compliances
+
   def host_platform
 
   end
