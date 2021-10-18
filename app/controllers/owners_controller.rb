@@ -5,7 +5,7 @@ class OwnersController < ApplicationController
 
   def index
     authorize Owner, :index?
-    @search = Owner.search(params[:q])
+    @search = Owner.ransack(params[:q])
     @owners = @search.result.paginate(page: params[:page])
     respond_with @owners
   end

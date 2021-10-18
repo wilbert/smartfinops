@@ -19,6 +19,8 @@ gem 'ransack'
 gem 'will_paginate'
 gem 'devise'
 gem 'aws-sdk'
+gem 'searchkick'
+
 
 group :development, :test do
   gem 'pry-rails', '0.3.9'

@@ -5,7 +5,7 @@ class CompliancesController < ApplicationController
 
   def index
     authorize Compliance, :index?
-    @search = Compliance.search(params[:q])
+    @search = Compliance.ransack(params[:q])
     @compliances = @search.result.paginate(page: params[:page])
     respond_with @compliances
   end

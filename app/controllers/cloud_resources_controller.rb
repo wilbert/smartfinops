@@ -5,7 +5,11 @@ class CloudResourcesController < ApplicationController
 
   def index
     authorize CloudResource, :index?
-    @search = CloudResource.search(params[:q])
+    # params[:q] ||= {}
+
+    # @elastic_search_results = CloudResource.search(params[:q][:search_term]).map(&:id)
+
+    @search = CloudResource.ransack(params[:q])
     @cloud_resources = @search.result.paginate(page: params[:page])
     respond_with @cloud_resources
   end
@@ -69,6 +73,6 @@ class CloudResourcesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def cloud_resource_params
-    params.require(:cloud_resource).permit(:identifier, :service, :name, :service_type, :region, :correct_app_tag, :app_env, :cloud_stack_id)
+    params.require(:cloud_resource).permit(:resource_name, :resource_id, :resource_type, :resource_creation_time, :cloud_provider, :cloud_provider_id, :aws_arn, :relationships)
   end
 end

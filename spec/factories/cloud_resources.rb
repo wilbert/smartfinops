@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :cloud_resource do
-    identifier { "MyString" }
-    service { "MyString" }
-    name { "MyString" }
-    service_type { "MyString" }
-    region { "MyString" }
-    correct_app_tag { "MyString" }
-    app_env { "MyString" }
-    cloud_stack { nil }
+    resource_name { "MyString" }
+    resource_id { "MyString" }
+    resource_type { "MyString" }
+    resource_creation_time { "MyString" }
+    cloud_provider { 1 }
+    cloud_provider_id { "MyString" }
+    aws_arn { "MyString" }
+    relationships { "" }
   end
 end

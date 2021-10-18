@@ -1,21 +1,24 @@
 <h2><%= title t(:cloud_resource, scope: 'activerecord.models').pluralize %></h2>
 
 <% content_for :actions do -%>
-  <%= link_to t(:add_model, model: t(:cloud_resource, scope: 'activerecord.models')), new_cloud_resource_path, class: "btn btn-success" %>
 <% end -%>
+
+<%= search_form_for @search, builder: SimpleForm::FormBuilder do |f| %>
+  <%= f.input :resource_name_cont %>
+<% end %>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
-      <th><%= sort_link @search, :identifier, t(:identifier, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :service, t(:service, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :name, t(:name, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :service_type, t(:service_type, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :region, t(:region, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :correct_app_tag, t(:correct_app_tag, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :app_env, t(:app_env, scope: "activerecord.attributes.cloud_resource") %></th>
-      <th><%= sort_link @search, :cloud_stack, t(:cloud_stack, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :resource_name, t(:resource_name, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :resource_id, t(:resource_id, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :resource_type, t(:resource_type, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :resource_creation_time, t(:resource_creation_time, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :cloud_provider, t(:cloud_provider, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :cloud_provider_id, t(:cloud_provider_id, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :aws_arn, t(:aws_arn, scope: "activerecord.attributes.cloud_resource") %></th>
+      <th><%= sort_link @search, :relationships, t(:relationships, scope: "activerecord.attributes.cloud_resource") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,14 +28,14 @@
     <% @cloud_resources.each do |cloud_resource| %>
       <tr>
         <td><%= cloud_resource.id %></td>
-        <td><%= cloud_resource.identifier %></td>
-        <td><%= cloud_resource.service %></td>
-        <td><%= cloud_resource.name %></td>
-        <td><%= cloud_resource.service_type %></td>
-        <td><%= cloud_resource.region %></td>
-        <td><%= cloud_resource.correct_app_tag %></td>
-        <td><%= cloud_resource.app_env %></td>
-        <td><%= cloud_resource.cloud_stack %></td>
+        <td><%= cloud_resource.resource_name %></td>
+        <td><%= cloud_resource.resource_id %></td>
+        <td><%= cloud_resource.resource_type %></td>
+        <td><%= cloud_resource.resource_creation_time %></td>
+        <td><%= cloud_resource.cloud_provider %></td>
+        <td><%= cloud_resource.cloud_provider_id %></td>
+        <td><%= cloud_resource.aws_arn %></td>
+        <td><%= cloud_resource.relationships %></td>
         <td>
           <%= link_to cloud_resource, title: t(:visualize) do %>
             <i class="fa fa-eye btn btn-default"></i>

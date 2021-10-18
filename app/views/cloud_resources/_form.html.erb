@@ -1,14 +1,14 @@
 <%= simple_form_for(@cloud_resource) do |f| %>
   <%= f.error_notification %>
 
-    <%= f.input :identifier %>
-    <%= f.input :service %>
-    <%= f.input :name %>
-    <%= f.input :service_type %>
-    <%= f.input :region %>
-    <%= f.input :correct_app_tag %>
-    <%= f.input :app_env %>
-    <%= f.association :cloud_stack %>
+    <%= f.input :resource_name %>
+    <%= f.input :resource_id %>
+    <%= f.input :resource_type %>
+    <%= f.input :resource_creation_time %>
+    <%= f.input :cloud_provider %>
+    <%= f.input :cloud_provider_id %>
+    <%= f.input :aws_arn %>
+    <%= f.input :relationships %>
   <hr class="my-4">
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_012728) do
+ActiveRecord::Schema.define(version: 2021_10_17_232627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,26 +31,28 @@ ActiveRecord::Schema.define(version: 2021_10_16_012728) do
   end
 
   create_table "cloud_resources", force: :cascade do |t|
-    t.string "identifier"
-    t.string "service"
-    t.string "name"
-    t.string "service_type"
-    t.string "region"
-    t.string "correct_app_tag"
-    t.string "app_env"
-    t.bigint "cloud_stack_id", null: false
+    t.string "resource_name"
+    t.string "resource_id"
+    t.string "resource_type"
+    t.string "resource_creation_time"
+    t.integer "cloud_provider"
+    t.string "cloud_provider_id"
+    t.string "aws_arn"
+    t.jsonb "relationships"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cloud_stack_id"], name: "index_cloud_resources_on_cloud_stack_id"
+    t.boolean "tag_compliant"
+    t.datetime "deleted_at"
+    t.string "created_by"
   end
 
-  create_table "cloud_stack_compliances", force: :cascade do |t|
+  create_table "cloud_stack_compliances", id: :bigint, default: -> { "nextval('cloud_stack_compliences_id_seq'::regclass)" }, force: :cascade do |t|
     t.bigint "cloud_stack_id", null: false
     t.bigint "compliance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cloud_stack_id"], name: "index_cloud_stack_compliances_on_cloud_stack_id"
-    t.index ["compliance_id"], name: "index_cloud_stack_compliances_on_compliance_id"
+    t.index ["cloud_stack_id"], name: "index_cloud_stack_compliences_on_cloud_stack_id"
+    t.index ["compliance_id"], name: "index_cloud_stack_compliences_on_complience_id"
   end
 
   create_table "cloud_stacks", force: :cascade do |t|
@@ -67,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_10_16_012728) do
     t.index ["name"], name: "index_cloud_stacks_on_name"
   end
 
-  create_table "compliances", force: :cascade do |t|
+  create_table "compliances", id: :bigint, default: -> { "nextval('compliences_id_seq'::regclass)" }, force: :cascade do |t|
     t.string "rule_name"
     t.float "weight"
     t.datetime "deadline"
@@ -109,7 +111,6 @@ ActiveRecord::Schema.define(version: 2021_10_16_012728) do
   end
 
   add_foreign_key "apps", "owners"
-  add_foreign_key "cloud_resources", "cloud_stacks"
   add_foreign_key "cloud_stack_compliances", "cloud_stacks"
   add_foreign_key "cloud_stack_compliances", "compliances"
   add_foreign_key "cloud_stacks", "apps"
