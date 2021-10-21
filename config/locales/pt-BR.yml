@@ -92,9 +92,25 @@ pt-BR:
       id: "Id"
       app:
         name: "Nome"
+        is_active: "Ativo?"
+        critical_level: "Criticidade"
+        is_internal: "Interno?"
+        business_alias: "Apelido"
+        app_tags: "Tags"
+        owner: "Líder"
       cloud_stack:
         cloud_provider: "Cloud Provider"
         cloud_provider_id: "ID Único (ARN)"
+      cloud_resource:
+        resource_id: "Cloud ID"
+        resource_name: "Nome"
+        resource_type: "Tipo"
+        resource_creation_time: "Criado em"
+        cloud_provider: "Nuvem"
+        cloud_provider_id: "ID na Nuvem"
+        aws_arn: "Amazon Resource Number"
+        relationships: "Ligações"
+
 
   will_paginate:
     page_gap: "..."

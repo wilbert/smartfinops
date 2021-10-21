@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_232627) do
+ActiveRecord::Schema.define(version: 2021_10_21_215948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_232627) do
     t.boolean "tag_compliant"
     t.datetime "deleted_at"
     t.string "created_by"
+    t.jsonb "tags"
   end
 
   create_table "cloud_stack_compliances", id: :bigint, default: -> { "nextval('cloud_stack_compliences_id_seq'::regclass)" }, force: :cascade do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_232627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.string "domain_url"
     t.index ["app_id"], name: "index_cloud_stacks_on_app_id"
     t.index ["name"], name: "index_cloud_stacks_on_name"
   end

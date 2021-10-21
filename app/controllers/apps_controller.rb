@@ -5,6 +5,8 @@ class AppsController < ApplicationController
 
   def index
     authorize App, :index?
+    params[:q] ||= {}
+    params[:per_page] ||= 50
     @search = App.ransack(params[:q])
     @apps = @search.result.paginate(page: params[:page])
     respond_with @apps

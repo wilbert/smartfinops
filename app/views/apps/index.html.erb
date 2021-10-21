@@ -4,17 +4,15 @@
   <%= link_to t(:add_model, model: t(:app, scope: 'activerecord.models')), new_app_path, class: "btn btn-success" %>
 <% end -%>
 
-<table class="table table-striped">
+<table class="table table-striped table-light table-bordered">
   <thead>
-    <tr>
+    <tr class="text-dark">
       <th><%= sort_link @search, :id, t(:id, scope: "activerecord.attributes") %></th>
       <th><%= sort_link @search, :name, t(:name, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :is_active, t(:is_active, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :critical_level, t(:critical_level, scope: "activerecord.attributes.app") %></th>
       <th><%= sort_link @search, :is_internal, t(:is_internal, scope: "activerecord.attributes.app") %></th>
-      <th><%= sort_link @search, :business_alias, t(:business_alias, scope: "activerecord.attributes.app") %></th>
-      <th><%= sort_link @search, :app_tags, t(:app_tags, scope: "activerecord.attributes.app") %></th>
-      <th><%= sort_link @search, :owner, t(:owner, scope: "activerecord.attributes.app") %></th>
+      <th width="30%"><%= sort_link @search, :owner_name, t(:owner, scope: "activerecord.attributes.app") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,12 +22,26 @@
     <% @apps.each do |app| %>
       <tr>
         <td><%= app.id %></td>
-        <td><%= app.name %></td>
-        <td><%= app.is_active %></td>
-        <td><%= app.critical_level %></td>
-        <td><%= app.is_internal %></td>
-        <td><%= app.business_alias %></td>
-        <td><%= app.app_tags %></td>
+        <td>
+          <b>
+            <%= link_to app.name, app %>
+          </b>
+        </td>
+        <td>
+          <span class="badge bg-<%= app.is_active ? 'success' : 'danger' %>">
+            <%= boolean_label app.is_active %>
+          </span>
+        </td>
+        <td>
+          <span class="badge bg-danger bg-opacity-<%= opacity_level(app.critical_level) %>">
+            <%= app.critical_level %>
+          </span>
+        </td>
+        <td>
+          <span class="badge bg-<%= app.is_internal ? 'success' : 'danger' %>">
+            <%= boolean_label app.is_internal %>
+          </span>
+        </td>
         <td><%= app.owner.try(:name) %></td>
         <td>
           <%= link_to app, title: t(:visualize) do %>

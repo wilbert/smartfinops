@@ -75,6 +75,7 @@ class CloudStacksController < ApplicationController
       :score,
       :status,
       :product_id,
+      :domain_url,
       compliance_ids: []
     )
   end

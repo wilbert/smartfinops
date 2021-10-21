@@ -38,7 +38,7 @@
     </p>
     <p>
       <small><%= t(:owner, scope: "activerecord.attributes.app") %>:</small>
-    <h3><%= @app.owner %></h3>
+    <h3><%= @app.owner.try(:name) %></h3>
     </p>
   </div>
   <div class="col">
@@ -80,8 +80,8 @@
               <td><%= cloud_stack.status %></td>
             </tr>
             <tr>
-              <td><%= t(:'activerecord.attributes.cloud_stack.status') %></td>
-              <td></td>
+              <td><%= t(:'activerecord.attributes.cloud_stack.domain_url') %></td>
+              <td><%= cloud_stack.domain_url %></td>
             </tr>
             </tbody>
           </table>

@@ -5,7 +5,7 @@ class OwnersController < ApplicationController
 
   def index
     authorize Owner, :index?
-    @search = Owner.ransack(params[:q])
+    @search = Owner.select('owners.*, count(apps.id) as app_counter').joins(:apps).group('owners.id').ransack(params[:q])
     @owners = @search.result.paginate(page: params[:page])
     respond_with @owners
   end

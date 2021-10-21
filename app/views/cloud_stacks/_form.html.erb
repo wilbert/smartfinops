@@ -7,6 +7,7 @@
     <%= f.input :sla %>
     <%= f.input :score %>
     <%= f.input :status, collection: CloudStack.statuses.keys %>
+    <%= f.input :domain_url %>
     <%= simple_fields_for :compliances do |st| %>
       <% Compliance.order('rule_name').each_with_index do |c, index| %>
         <div class="form-check">

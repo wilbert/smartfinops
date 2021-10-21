@@ -16,11 +16,15 @@ gem 'simple_form', '5.1.0'
 gem "pundit", '2.1.1'
 gem 'responders', '3.0.1'
 gem 'ransack'
-gem 'will_paginate'
 gem 'devise'
 gem 'aws-sdk'
 gem 'searchkick'
+gem 'json'
 
+
+# Pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap-style'
 
 group :development, :test do
   gem 'pry-rails', '0.3.9'
